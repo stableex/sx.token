@@ -42,7 +42,7 @@ void token::issue( const name& to, const asset& quantity, const string& memo )
 
     statstable.modify( st, same_payer, [&]( auto& s ) {
         s.supply += quantity;
-        s.max_supply = s.supply;
+        s.max_supply += quantity;
     });
 
     add_balance( st.issuer, quantity, st.issuer );
@@ -62,12 +62,11 @@ void token::retire( const asset& quantity, const string& memo )
     require_auth( st.issuer );
     check( quantity.is_valid(), "invalid quantity" );
     check( quantity.amount > 0, "must retire positive quantity" );
-
     check( quantity.symbol == st.supply.symbol, "symbol precision mismatch" );
 
     statstable.modify( st, same_payer, [&]( auto& s ) {
         s.supply -= quantity;
-        s.max_supply = s.supply;
+        s.max_supply -= quantity;
     });
 
     sub_balance( st.issuer, quantity );
