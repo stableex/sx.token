@@ -93,3 +93,12 @@ icon: https://avatars1.githubusercontent.com/u/60660770#d6a1df4bbf2942f23c3a4485
 If {{from}} is not already the RAM payer of their {{asset_to_symbol_code quantity}} token balance, {{from}} will be designated as such. As a result, RAM will be deducted from {{from}}’s resources to refund the original RAM payer.
 
 If {{to}} does not have a balance for {{asset_to_symbol_code quantity}}, {{from}} will be designated as the RAM payer of the {{asset_to_symbol_code quantity}} token balance for {{to}}. As a result, RAM will be deducted from {{from}}’s resources to create the necessary records.
+
+<h1 class="contract">setissuer</h1>
+
+---
+spec_version: "0.2.0"
+title: Set issuer
+summary: 'Set issuer of current token symbol'
+icon: https://avatars1.githubusercontent.com/u/60660770#d6a1df4bbf2942f23c3a4485eb9942cb37c5348945e84be8c53e2ef9254ed8da
+---
