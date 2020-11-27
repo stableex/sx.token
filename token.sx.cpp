@@ -152,28 +152,3 @@ void token::close( const name& owner, const symbol& symbol )
     check( it->balance.amount == 0, "Cannot close because the balance is not zero." );
     acnts.erase( it );
 }
-
-// void token::setissuer( const name issuer, const symbol_code symcode )
-// {
-//     stats statstable( get_self(), symcode.raw() );
-//     auto& stats = statstable.get( symcode.raw(), "symbol code does not exist");
-
-//     check( is_account( issuer ), "issuer does not exist" );
-//     check( has_auth( stats.issuer ), "missing current issuer authority");
-
-//     statstable.modify( stats, get_self(), [&]( auto& row ) {
-//         row.issuer = issuer;
-//     });
-// }
-
-// void token::setmaxsupply( const symbol_code symcode, const int64_t amount )
-// {
-//     stats statstable( get_self(), symcode.raw() );
-//     auto& stats = statstable.get( symcode.raw(), "symbol code does not exist");
-
-//     check( has_auth( stats.issuer ), "missing current issuer authority");
-
-//     statstable.modify( stats, get_self(), [&]( auto& row ) {
-//         row.max_supply.amount = amount;
-//     });
-// }
