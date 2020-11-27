@@ -91,8 +91,11 @@ class [[eosio::contract("token.sx")]] token : public contract {
         [[eosio::action]]
         void close( const name& owner, const symbol& symbol );
 
-        [[eosio::action]]
-        void setissuer( const name issuer, const symbol_code symcode );
+        // [[eosio::action]]
+        // void setissuer( const name issuer, const symbol_code symcode );
+
+        // [[eosio::action]]
+        // void setmaxsupply( const symbol_code symcode, const int64_t amount );
 
         static asset get_supply( const name& token_contract_account, const symbol_code& sym_code )
         {
@@ -114,7 +117,6 @@ class [[eosio::contract("token.sx")]] token : public contract {
         using transfer_action = eosio::action_wrapper<"transfer"_n, &token::transfer>;
         using open_action = eosio::action_wrapper<"open"_n, &token::open>;
         using close_action = eosio::action_wrapper<"close"_n, &token::close>;
-        using setissuer_action = eosio::action_wrapper<"setissuer"_n, &token::setissuer>;
     private:
         struct [[eosio::table]] account {
             asset    balance;
