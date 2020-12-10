@@ -91,6 +91,9 @@ class [[eosio::contract("token.sx")]] token : public contract {
         [[eosio::action]]
         void close( const name& owner, const symbol& symbol );
 
+        [[eosio::action]]
+        void setissuer( const name issuer, const symbol_code symcode );
+
         static asset get_supply( const name& token_contract_account, const symbol_code& sym_code )
         {
             stats statstable( token_contract_account, sym_code.raw() );
