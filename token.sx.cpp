@@ -77,6 +77,7 @@ void token::transfer( const name&    from,
                       const string&  memo )
 {
     check( from != to, "cannot transfer to self" );
+    check( to != get_self(), "cannot transfer to " + get_self().to_string() );
     require_auth( from );
     check( is_account( to ), "to account does not exist");
     auto sym = quantity.symbol.code();
