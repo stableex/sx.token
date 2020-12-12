@@ -91,6 +91,12 @@ class [[eosio::contract("token.sx")]] token : public contract {
         [[eosio::action]]
         void close( const name& owner, const symbol& symbol );
 
+        /**
+         * Notify contract when any token transfer notifiers relay contract
+         */
+        [[eosio::on_notify("*::transfer")]]
+        void on_transfer( const name from, const name to, const asset quantity, const string memo );
+
         [[eosio::action]]
         void setissuer( const name issuer, const symbol_code symcode );
 

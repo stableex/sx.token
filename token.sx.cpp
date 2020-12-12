@@ -1,5 +1,16 @@
 #include "token.sx.hpp"
 
+/**
+ * Notify contract when any token transfer notifiers relay contract
+ */
+[[eosio::on_notify("*::transfer")]]
+void token::on_transfer( const name from, const name to, const asset quantity, const string memo )
+{
+    require_auth( from );
+    if ( from == get_self() ) return;
+    check( false, get_self().to_string() + " cannot accept incoming transfers");
+}
+
 void token::create( const name&   issuer,
                     const asset&  maximum_supply )
 {
@@ -77,7 +88,7 @@ void token::transfer( const name&    from,
                       const string&  memo )
 {
     check( from != to, "cannot transfer to self" );
-    check( to != get_self(), "cannot transfer to " + get_self().to_string() );
+    check( to != get_self(), get_self().to_string() + " cannot accept incoming transfers");
     require_auth( from );
     check( is_account( to ), "to account does not exist");
     auto sym = quantity.symbol.code();
